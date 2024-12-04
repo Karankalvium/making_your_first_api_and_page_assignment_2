@@ -31,7 +31,7 @@ Example Responses:
   }
 
 - For 500 (Internal Server Error):
-  Request: /status-info?code=500
+  Request: 
   Response:
   {
     "status": 500,
@@ -49,7 +49,125 @@ Example Responses:
 List of Status Codes to Handle:
 200, 201, 204, 400, 401, 403, 404, 405, 429, 500, 502, 503, 504
 */
+app.get('/status-info',(request,response)=>{
+  let code = request.query.code;
+  if(code==200)
+  {
+    let obj ={
+    "status": 200,
+    "message": "OK: The request has succeeded. The meaning of this status depends on the HTTP method used."
+    }
+    return response.send(obj);
+  }
 
+  else if(code==201)
+  {
+    let obj={
+      "status": 201,
+      "message": "Created: The request was successful, and a new resource was created as a result."
+    }
+    return response.send(obj);
+  }
+
+  else if(code==204)
+  {
+    let obj={
+      "status": 204,
+        "message": "No Content: The request was successful, but there's no content to send in the response."
+    }
+    return response.send(obj);
+    }
+
+  else if(code==400)
+  {
+    let obj={
+      "status": 400,
+      "message": "Bad Request: The server could not understand the request due to invalid syntax."
+    }
+    return response.send(obj);
+  }
+
+  else if(code==401)
+  {
+    let obj={
+      "status": 401,
+      "message": "Unauthorized: Authentication is required, and the user needs to provide valid credentials."
+    }
+    return response.send(obj);
+  }
+
+  else if(code==403)
+  {
+    let obj={
+      "status": 403,
+      "message": "Forbidden: The server understood the request, but the client does not have permission to access the resource."
+    }
+    return response.send(obj);
+  }
+
+  else if(code==404)
+  {
+    let obj={
+    "status": 404,
+    "message": "Not Found: The server has not found anything matching the request URI. This is often caused by a missing page or resource."
+    }
+    return response.send(obj);
+  }
+
+  else if(code==405)
+  {
+    let obj={
+      "status": 405,
+      "message": "Method Not Allowed: The request method is not supported for the requested resource."
+    }
+    return response.send(obj);
+  }
+
+  else if(code==429)
+  {
+    let obj={
+      "status": 429,
+      "message": "Too Many Requests: The user has sent too many requests in a given amount of time."
+    }
+    return response.send(obj);
+  }
+
+  else if(code==500)
+  {
+    let obj={
+    "status": 500,
+    "message": "Internal Server Error: The server encountered an unexpected condition that prevented it from fulfilling the request."
+    }
+    return response.send(obj);
+  }
+  else if(code==502)
+  {
+    let obj={
+      "status": 502,
+      "message": "Bad Gateway: The server was acting as a gateway or proxy and received an invalid response from the upstream server."
+    }
+    return response.send(obj);
+  }
+
+  else if(code==503)
+  {
+    let obj={
+      "status": 503,
+      "message": "Service Unavailable : The server is currently unavailable, often due to maintenance or overload."
+    }
+    return response.send(obj);
+  }
+  
+  else if(code==504)
+  {
+    let obj={
+      "status": 504,
+      "message": "Gateway Timeout : The server was acting as a gateway or proxy and did not receive a timely response from the upstream server."
+    }
+    return response.send(obj);
+  }
+
+})
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Status Code API is running on http://localhost:${PORT}`);
